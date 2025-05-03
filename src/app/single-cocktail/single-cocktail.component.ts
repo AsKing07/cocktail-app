@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Cocktail } from '../models/cocktail.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CocktailService } from '../services/cocktail.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Subject, take, takeUntil } from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-single-cocktail',
   imports: [CommonModule],
@@ -26,8 +27,12 @@ export class SingleCocktailComponent implements OnInit, OnDestroy {
 
   isSmallScreen: boolean = false;
 
+  mediaItems: { type: 'image' | 'video', src: string }[] = [];
+selectedIndex = 0;
+safeVideoUrl: SafeResourceUrl | null = null;
+
   constructor(
-    private route: ActivatedRoute, private cocktailService: CocktailService, private breakpointObserver: BreakpointObserver
+    private route: ActivatedRoute, private cocktailService: CocktailService, private breakpointObserver: BreakpointObserver, private router: Router, private sanitizer: DomSanitizer
   ){}
 
   ngOnInit(): void {
@@ -46,6 +51,9 @@ export class SingleCocktailComponent implements OnInit, OnDestroy {
           this.cocktailService.getCocktailById(id).subscribe((cocktail: Cocktail) => {
             this.cocktail = cocktail;
           this.getIngredients(cocktail);
+          this.tags = this.getTags(cocktail);
+          this.prepareMediaItems(cocktail);
+
             this.loading = false;
           });
           
@@ -71,15 +79,9 @@ for (let i = 1; i <= 15; i++) {
       });
     }
 }
-
-
-    // return Array.from({ length: 15 })
-    //   .map((_, i) => cocktail[`strIngredient${i + 1}` as keyof Cocktail])
-    //   .filter(item => !!item) as string[];
   }
 
   getTags(cocktail: Cocktail): string[] {
-    console.log(cocktail.strTags);
     return cocktail.strTags ? cocktail.strTags.split(',') : [];
     
   }
@@ -89,5 +91,42 @@ for (let i = 1; i <= 15; i++) {
     return `https://www.thecocktaildb.com/images/ingredients/${item.toLowerCase()}-${size}.png`;
   }
 
+  prepareMediaItems(cocktail: Cocktail): void {
+    this.mediaItems = [];
+  
+      if (cocktail.strDrinkThumb) {
+        this.mediaItems.push({ type: 'image', src: cocktail.strDrinkThumb });
+      }
+
+      if (cocktail.strVideo) {
+        const embedUrl = this.extractYouTubeEmbedUrl(cocktail.strVideo);
+        console.log(embedUrl)
+        if (embedUrl) {
+          this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+          this.mediaItems.push({ type: 'video', src: this.safeVideoUrl as string });
+        }
+        
+      }
+  }
+
+  extractYouTubeEmbedUrl(url: string): string | null {
+    const match = url.match(/(?:\?v=|\.be\/|\/embed\/)([a-zA-Z0-9_-]{11})/);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+  }
+
+  nextSlide(): void {
+    this.selectedIndex = (this.selectedIndex + 1) % this.mediaItems.length;
+  }
+  
+  prevSlide(): void {
+    this.selectedIndex = (this.selectedIndex - 1 + this.mediaItems.length) % this.mediaItems.length;
+  }
+
+
+
+  handleNavigateBack(): void {
+    this.router.navigate(['/cocktails']);
+
+  }
 
 }
