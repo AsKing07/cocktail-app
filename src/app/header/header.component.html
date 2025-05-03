@@ -1,15 +1,20 @@
 <header class="bg-indigo-600 text-white p-4 shadow-md">
     <div class="max-w-5xl mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold cursor-pointer ">Cocktail Explorer 🍸</h1>
+      <h1 class="text-xl font-bold cursor-pointer md:text-2xl ">Cocktail Explorer 🍸</h1>
       <nav>
         <ul class="flex space-x-6 text-lg">
           <li>
-            <a routerLink="/cocktails" routerLinkActive="font-semibold underline" class="hover:text-gray-300 transition duration-200  ease-in-out   cursor-pointer">
-              Cocktails
-            </a>
+            <a
+            routerLink="/cocktails"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="hover:text-gray-300 transition duration-200 ease-in-out cursor-pointer"
+          >
+            Cocktails
+          </a>
           </li>
           <li>
-            <a routerLink="/about" routerLinkActive="font-semibold underline" class="hover:text-gray-300 transition duration-200  ease-in-out   cursor-pointer"  >
+            <a routerLink="/about" routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }" class="hover:text-gray-300 transition duration-200  ease-in-out   cursor-pointer"  >
               About
             </a>
           </li>

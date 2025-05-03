@@ -1,3 +1,19 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+
+
+<div class=" h-screen  scrollbar-hide overflow-y-auto ">
+
+
+    <div class="header fixed w-full top-0 z-10 ">
+                <app-header></app-header>
+        </div>
+
+        <div class="app justify-center  min-w-full min-h-full flex flex-col mt-6 md:mt-2 ">
+                <router-outlet  ></router-outlet>
+        </div>
+
+        <div class="footer bottom-0 w-full ">
+                <app-footer></app-footer>
+        </div>
+
+
+</div>

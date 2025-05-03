@@ -1,0 +1,39 @@
+<div class=" mx-auto w-full max-w-xs h-[460px] flex flex-col rounded-xl shadow-lg bg-white overflow-hidden  hover:scale-105 cursor-pointer  transition-transform duration-300 ease-in-out">
+  
+  <!-- Image visible et haute -->
+  <img 
+    [src]="cocktail.strDrinkThumb" 
+    [alt]="cocktail.strDrink" 
+    class="w-full h-64 object-cover"
+  />
+
+  <!-- Contenu principal -->
+  <div class="flex-1 flex flex-col px-4 py-3">
+    <h2 class="text-lg font-semibold text-center mb-1">{{ cocktail.strDrink }}</h2>
+    <p class="text-sm text-gray-500 text-center mb-2">{{ cocktail.strCategory }} | {{ cocktail.strAlcoholic }}</p>
+
+    <!-- Ingrédients -->
+    <div class="flex flex-wrap justify-center gap-1 text-xs mb-4">
+      <span 
+        *ngFor="let item of ingredients.slice(0, 4)" 
+        class="bg-indigo-500 text-white px-2 py-0.5 rounded-full"
+      >
+        {{ item }}
+      </span>
+      <span *ngIf="ingredients.length > 4" class="text-indigo-700 italic">
+        +{{ ingredients.length - 4 }} autres
+      </span>
+    </div>
+
+    <!-- Espace vide pour forcer l’alignement bas du bouton -->
+    <div class="flex-grow"></div>
+
+    <!-- Bouton -->
+    <button 
+      (click)="goToDetails()"
+      class="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700 transition mt-auto"
+    >
+      Préparation
+    </button>
+  </div>
+</div>
