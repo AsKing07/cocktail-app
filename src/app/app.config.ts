@@ -1,6 +1,19 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import {provideRouter, Routes, withComponentInputBinding} from '@angular/router';
+import { CocktailListComponent } from './cocktail-list/cocktail-list.component';
+
+
+const routes: Routes = [
+   { path: 'cocktails', component: CocktailListComponent },
+  // { path: 'about', component: AboutComponent },
+  { path: '', redirectTo: '/cocktails', pathMatch: 'full' },
+];
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideClientHydration(withEventReplay())]
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }), provideClientHydration(withEventReplay()),
+    provideRouter(routes, withComponentInputBinding()),
+  
+  ]
 };
