@@ -9,7 +9,8 @@ import { Observable, Subject, takeUntil } from 'rxjs';
   selector: 'app-cocktail-list',
   imports: [CommonModule, CocktailComponent],
   templateUrl: './cocktail-list.component.html',
-  styleUrl: './cocktail-list.component.scss'
+  styleUrl: './cocktail-list.component.scss',
+  standalone: true,
 })
 export class CocktailListComponent implements OnInit, OnDestroy {
   cocktails: Cocktail[] = [];

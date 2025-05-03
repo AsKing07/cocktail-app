@@ -9,6 +9,10 @@ const routes: Routes = [
    { path: 'cocktails', component: CocktailListComponent },
   // { path: 'about', component: AboutComponent },
   { path: '', redirectTo: '/cocktails', pathMatch: 'full' },
+  {
+    path: 'cocktail/:id',
+    loadComponent: ()=>import('./single-cocktail/single-cocktail.component').then(m=>m.SingleCocktailComponent),
+  }
 ];
 
 export const appConfig: ApplicationConfig = {

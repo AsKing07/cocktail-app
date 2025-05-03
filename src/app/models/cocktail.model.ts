@@ -1,10 +1,15 @@
 export interface Cocktail {
     idDrink: string;
     strDrink: string;
+    strDrinkAlternate: string;
+    strTags: string;
+    strVideo: string;
     strCategory: string;
+    strIBA: string;
     strAlcoholic: string;
     strGlass: string;
-    strInstructionsFR: string;
+    strInstructions: string;
+    strInstructionsFR?: string;
     strDrinkThumb: string;
   
     strIngredient1?: string;

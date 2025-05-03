@@ -25,4 +25,10 @@ export class CocktailService {
     
     );
   }
+
+  getCocktailById(id: string): Observable<Cocktail> {
+    return this.http.get<{ drinks: Cocktail[] }>(`${this.apiUrl}lookup.php?i=${id}`).pipe(
+      map(response => response.drinks[0])
+    );
+  }
 }

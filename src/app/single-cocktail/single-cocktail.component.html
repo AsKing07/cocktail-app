@@ -1,0 +1,58 @@
+<div *ngIf="cocktail && !loading" class="w-full mx-auto justify-center h-full px-6 lg:px-16 py-6 mt-8 flex flex-col">
+
+  <!-- Section supérieure : Titre, image et ingrédients -->
+  <div class="w-full flex flex-col md:flex-row items-stretch mb-12 gap-6">
+    <!-- Colonne gauche : Titre et image -->
+    <div class="flex flex-col h-full items-center md:w-2/5">
+      <h1 class="text-3xl lg:text-4xl font-bold mb-4 text-center">{{ cocktail.strDrink }}</h1>
+      <img 
+        [src]="cocktail.strDrinkThumb" 
+        alt="{{ cocktail.strDrink }}" 
+        class="w-4/5 md:w-full lg:w-3/4 h-auto max-h-[400px] rounded-xl mb-4 object-cover shadow-lg" 
+      />
+      <p class="mb-2 text-gray-700 text-center">{{ cocktail.strCategory }} | {{ cocktail.strAlcoholic }}</p>
+
+      <!-- Tags -->
+      <div class="flex flex-wrap justify-center gap-2 text-xs mb-4">
+        <span 
+          *ngFor="let item of tags" 
+          class="bg-indigo-500 text-white px-3 py-1 rounded-full max-w-[120px] truncate"
+          title="{{ item }}"
+        >
+          {{ item }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Colonne droite : Ingrédients -->
+    <div class="flex flex-col w h-full items-center md:w-3/5">
+      <h2 class="text-xl text-center  lg:text-2xl font-semibold mb-4">Ingrédients</h2>
+      <div class="flex flex-wrap w-full gap-4 mb-4">
+        <div *ngFor="let item of ingredients" class="mx-auto text-center">
+          <img 
+            [src]="item.imageUrl" 
+            [alt]="item" 
+            class="w-[80px] h-[80px] md:w-[150px] md:h-[150px]  mx-auto mb-2 object-contain" 
+          />
+          <p class="text-sm lg:text-base">{{ item.ingredient }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section inférieure : Instructions et verre -->
+  <div>
+    <h2 class="text-xl lg:text-2xl font-semibold mb-2">Instructions</h2>
+    <p class="text-gray-800 leading-relaxed">{{ cocktail.strInstructionsFR || cocktail.strInstructions }}</p>
+
+    <h2 class="text-xl lg:text-2xl font-semibold mt-6 mb-2">Verre</h2>
+    <p class="text-gray-800">{{ cocktail.strGlass }}</p>
+
+    <button 
+      routerLink="/cocktails" 
+      class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition w-fit mx-auto shadow-md"
+    >
+      Retour
+    </button>
+  </div>
+</div>

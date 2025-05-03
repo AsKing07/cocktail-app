@@ -1,6 +1,6 @@
 <div class=" mx-auto w-full max-w-xs h-[460px] flex flex-col rounded-xl shadow-lg bg-white overflow-hidden  hover:scale-105 cursor-pointer  transition-transform duration-300 ease-in-out">
   
-  <!-- Image visible et haute -->
+  <!-- Image -->
   <img 
     [src]="cocktail.strDrinkThumb" 
     [alt]="cocktail.strDrink" 
@@ -16,7 +16,8 @@
     <div class="flex flex-wrap justify-center gap-1 text-xs mb-4">
       <span 
         *ngFor="let item of ingredients.slice(0, 4)" 
-        class="bg-indigo-500 text-white px-2 py-0.5 rounded-full"
+        class="bg-indigo-500 text-white px-2 py-0.5 rounded-full max-w-[120px] truncate"
+        title="{{ item }}"
       >
         {{ item }}
       </span>
