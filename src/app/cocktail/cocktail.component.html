@@ -4,6 +4,7 @@
   <img 
     [src]="cocktail.strDrinkThumb" 
     [alt]="cocktail.strDrink" 
+    alt="{{cocktail.strDrink}}"
     class="w-full h-64 object-cover"
   />
 
@@ -15,19 +16,19 @@
     <!-- Ingrédients -->
     <div class="flex flex-wrap justify-center gap-1 text-xs mb-4">
       <span 
-        *ngFor="let item of ingredients.slice(0, 4)" 
+        *ngFor="let item of ingredients.slice(0, isMobile ? 3 : 4)" 
         class="bg-indigo-500 text-white px-2 py-0.5 rounded-full max-w-[120px] truncate"
         title="{{ item }}"
       >
         {{ item }}
       </span>
-      <span *ngIf="ingredients.length > 4" class="text-indigo-700 italic">
-        +{{ ingredients.length - 4 }} autres
+      <span *ngIf="ingredients.length > (isMobile ? 3 : 4)" class="text-indigo-700 italic">
+        +{{ ingredients.length - (isMobile ? 3 : 4) }} autres
       </span>
+     
+
     </div>
 
-    <!-- Espace vide pour forcer l’alignement bas du bouton -->
-    <div class="flex-grow"></div>
 
     <!-- Bouton -->
     <button 

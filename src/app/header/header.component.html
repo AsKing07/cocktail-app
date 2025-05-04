@@ -1,7 +1,12 @@
 <header class=" bg-indigo-600 text-white p-4 shadow-md">
-    <div class="max-w-5xl mx-auto flex justify-between items-center">
-      <h1 class="text-xl font-bold cursor-pointer md:text-2xl ">Cocktail Explorer 🍸</h1>
-      <nav>
+    <div class="max-w-5xl mx-auto flex justify-between items-center my-auto">
+      <div routerLink="/" class="flex cursor-pointer my-auto items-center ">
+        <img src="assets/images/logo.png" alt="Logo" class="h-10 w-10 mr-2 " />
+        <span class="text-xl font-bold md:text-2xl ">Cocktail Explorer</span>
+      </div>
+
+      <!-- Large screen navigation -->
+      <nav class="hidden md:flex items-center space-x-6">
         <ul class="flex space-x-6 text-lg">
           <li>
             <a
@@ -21,6 +26,28 @@
           </li>
         </ul>
       </nav>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center my-auto">
+      
+        <ng-icon id="menuButton" size="30px "  (click)="toggleMenuHandler()" class="flex mt-1 text-white focus:outline-none focus:ring-2 focus:ring-white
+        rounded-md"  [name]="'lucideMenu'" />
+     
+
+      </div>
+      <!-- Mobile menu -->
+      <nav *ngIf="toogleMenu"
+       class="md:hidden absolute top-16 left-0 w-full  bg-indigo-600 shadow-lg z-10 transition-transform transform duration-8000 ease-in-out"
+       [ngClass]="{ 'translate-y-0': toogleMenu, '-translate-y-full': !toogleMenu }"
+       id="mobile-menu">
+        <ul ngClass="" class="flex flex-col mx-auto text-center space-y-4 p-4 text-lg">
+          <li>
+            <a  (click)="toggleMenuHandler()" routerLink="/cocktails" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="hover:text-gray-300 transition duration-200 ease-in-out cursor-pointer">Cocktails</a>
+          </li>
+          <li>
+            <a  (click)="toggleMenuHandler()" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="hover:text-gray-300 transition duration-200 ease-in-out cursor-pointer">About</a>
+          </li>
+        </ul>
+      </nav>
     </div>
-  </header>
-  
+</header>

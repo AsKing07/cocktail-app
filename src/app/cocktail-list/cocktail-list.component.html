@@ -24,11 +24,12 @@
   </div>
 
    <!-- Liste des cocktails -->
-   <div *ngIf="!state.loading && !state.error" class="mx-14  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+  <div *ngIf="!state.loading && !state.error" class="mx-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   gap-6 justify-center items-center">
     <app-cocktail
       *ngFor="let cocktail of cocktails"
       [cocktail]="cocktail"
-    ></app-cocktail>
+      class="mx-auto"
+    />
   </div>
 
 
