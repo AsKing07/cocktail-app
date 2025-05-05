@@ -33,21 +33,26 @@ export class CocktailComponent implements OnInit, OnDestroy {
     
 
  
-      for (let i = 1; i<=15; i++)
-      {
-        const ingredient = this.cocktail[`strIngredient${i}` as keyof Cocktail];
-        const measure = this.cocktail[`strMeasure${i}` as keyof Cocktail];
-
-        if(ingredient) {
-          this.ingredients.push(`${measure ? measure : ''} ${ingredient}`.trim());
-        }
-      }
+    this.getIngredients(this.cocktail);
   }
 
 
   goToDetails()
   {
     this.router.navigate(['/cocktail', this.cocktail.idDrink]);
+  }
+
+  getIngredients(cocktail: Cocktail): void {
+    this.ingredients = [];
+
+    for (let i = 1; i <= 15; i++) {
+      const ingredient = cocktail[`strIngredient${i}` as keyof Cocktail];
+      const measure = cocktail[`strMeasure${i}` as keyof Cocktail];
+
+      if (ingredient) {
+        this.ingredients.push(`${measure ? measure : ''} ${ingredient}`.trim());
+      }
+    }
   }
 
 

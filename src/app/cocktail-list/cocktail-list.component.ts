@@ -30,7 +30,7 @@ private destroy$ = new Subject<boolean>();
     this.state.loading = true;
     this.state.error = '';
     this.cocktailService.getRandomCocktails().pipe(
-      takeUntil(this.destroy$) // Unsubscribe when the component is destroyed
+      takeUntil(this.destroy$) // Désinscription de l'observable lorsque le composant est détruit
     ).subscribe({
       next: (data) => {
         this.cocktails = data;
@@ -39,7 +39,7 @@ private destroy$ = new Subject<boolean>();
         }, 1000);
       },
       error: (error) => {
-        this.state.error = `Erreur lors de la récupération des cocktails : ${error}`;
+        this.state.error = `Erreur lors de la récupération des cocktails : ${error.message}`;
         this.state.loading = false;
       },
     });
@@ -50,7 +50,7 @@ private destroy$ = new Subject<boolean>();
   }
 
   ngOnDestroy(): void {
-    // Clean up any subscriptions or resources if necessary
+
     this.destroy$.next(true);
   }
 }

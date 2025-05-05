@@ -23,6 +23,8 @@
     "@angular/router": "^19.2.0",
     "@angular/ssr": "^19.2.9",
     "@ng-icons/core": "^31.3.0",
+    "@ng-icons/devicon": "^31.3.0",
+    "@ng-icons/font-awesome": "^31.3.0",
     "@ng-icons/lucide": "^31.3.0",
     "@tailwindcss/postcss": "^4.1.5",
     "cocktail-app": "file:",

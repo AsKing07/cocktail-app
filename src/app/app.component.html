@@ -1,19 +1,16 @@
-
-
-<div class=" h-screen  scrollbar-hide overflow-y-auto ">
-
-
-    <div class="header fixed w-full top-0 z-10 max-h-5 ">
-                <app-header></app-header>
+<div class="h-screen flex flex-col overflow-y-auto">
+        <!-- Header fixe -->
+        <div class="header fixed w-full top-0 z-10">
+            <app-header></app-header>
         </div>
-
-        <div class="app justify-center  min-w-full min-h-full flex flex-col  mt-6 md:mt-2 pt-16 ">
-                <router-outlet  ></router-outlet>
+    
+        <!-- Contenu principal -->
+        <div class="app flex-grow pt-20">
+            <router-outlet></router-outlet>
         </div>
-
-        <div class="footer bottom-0 w-full ">
-                <app-footer></app-footer>
+    
+        <!-- Footer -->
+        <div class="footer">
+            <app-footer></app-footer>
         </div>
-
-
-</div>
+    </div>
