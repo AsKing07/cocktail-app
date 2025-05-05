@@ -10,7 +10,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
   selector: 'app-single-cocktail',
   imports: [CommonModule],
   templateUrl: './single-cocktail.component.html',
-  styleUrl: './single-cocktail.component.scss'
+  styleUrl: './single-cocktail.component.scss',
+  standalone: true
 })
 export class SingleCocktailComponent implements OnInit, OnDestroy {
 
