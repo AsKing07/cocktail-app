@@ -24,6 +24,13 @@ const commonEngine = new CommonEngine();
  * ```
  */
 
+// Exemples of API endpoints
+ app.get('/api/hello', (req, res) => {
+  res.status(200).send({ message: 'Hello API' });
+});
+
+
+
 /**
  * Serve static files from /browser
  */

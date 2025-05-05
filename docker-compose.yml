@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  cocktail-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cocktail-app
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
