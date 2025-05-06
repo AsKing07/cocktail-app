@@ -94,7 +94,7 @@ describe('CocktailListComponent', () => {
     fixture.detectChanges();
 
     expect(component.state.error).toContain('Erreur lors de la récupération');
-    const errorText = fixture.nativeElement.querySelector('.text-red-500');
+    const errorText = fixture.nativeElement.querySelector('.error-text');
     expect(errorText).toBeTruthy();
   }));
 

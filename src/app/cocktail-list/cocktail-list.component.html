@@ -3,9 +3,10 @@
   <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600"></div>
 </div>
 
+<!-- État d'erreur -->
 <div *ngIf="!state.loading && state.error" class="flex flex-col items-center justify-center w-full h-full">
   <ng-icon name="faFaceSadTear" class="text-4xl mb-2 text-indigo-600"></ng-icon>
-  <p class="text-lg text-indigo-600">  {{ state.error }}</p>
+  <p class="text-lg text-indigo-600 error-text">  {{ state.error }}</p>
   <button 
     (click)="onRefresh()"
     class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition w-fit mx-auto shadow-md"

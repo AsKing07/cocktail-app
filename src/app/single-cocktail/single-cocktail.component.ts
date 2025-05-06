@@ -108,7 +108,7 @@ for (let i = 1; i <= 15; i++) {
 
       if (cocktail.strVideo) {
         const embedUrl = this.extractYouTubeEmbedUrl(cocktail.strVideo);
-        console.log(embedUrl)
+        // console.log(embedUrl)
         if (embedUrl) {
           this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
           this.mediaItems.push({ type: 'video', src: this.safeVideoUrl as string });
