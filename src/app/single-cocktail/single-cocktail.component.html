@@ -1,7 +1,7 @@
-<div *ngIf="cocktail && !loading" class="w-full mx-auto justify-center h-full px-6 lg:px-16 py-6  flex flex-col">
+<div *ngIf="cocktail && !loading" class="w-full mx-auto justify-center mb-2 h-full px-6 lg:px-16 py-6  flex flex-col">
 
   <!-- Section supérieure : Titre, image et ingrédients -->
-  <div class="w-full flex flex-col md:flex-row items-stretch mb-10 gap-6">
+  <div class="w-full flex flex-col md:flex-row items-stretch  gap-6">
     <!-- Colonne gauche : Titre et Carrousel image/vidéo -->
 <div class="flex flex-col h-full items-center md:w-2/5">
   <h1 class="text-3xl lg:text-4xl font-bold mb-4 text-center">{{ cocktail.strDrink }}</h1>
@@ -57,7 +57,7 @@
 
 
     <!-- Colonne droite : Ingrédients -->
-    <div class="flex flex-col w h-full items-center md:w-3/5">
+    <div class="flex flex-col w-full h-full items-center md:w-3/5">
       <h2 class="text-xl text-center  lg:text-2xl font-semibold mb-4">Ingrédients</h2>
       <div class="flex flex-wrap w-full gap-4 mb-4">
         <div *ngFor="let item of ingredients" class="mx-auto text-center">
@@ -65,27 +65,47 @@
             [src]="item.imageUrl" 
             [alt]="item" 
             (error)="item.imageUrl = 'assets/images/default-fallback-image.png'"
-            class="w-[80px] h-[80px] md:w-[100px] md:h-[100px]  mx-auto mb-2 object-contain" 
+            class="w-[60px] h-[60px] md:w-[100px] md:h-[100px]  mx-auto mb-2 object-contain" 
           />
-          <p class="text-sm lg:text-base">{{ item.ingredient }}</p>
+          <p class="text-xs lg:text-base">{{ item.ingredient }}</p>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Section inférieure : Instructions et verre -->
-  <div class="w-full flex flex-col items-center mb-10">
-    <h2 class="text-xl lg:text-2xl font-semibold mb-2">Instructions</h2>
-    <p class="text-gray-800 leading-relaxed">{{ cocktail.strInstructionsFR || cocktail.strInstructions }}</p>
+  <div class="w-full flex flex-col md:flex-row     items-center md:items-stretch justify-between mx-auto px-6 lg:px-16 py-6 gap-6">
+    <div>
 
-    <h2 class="text-xl lg:text-2xl font-semibold mt-6 mb-2">Verre</h2>
-    <p class="text-gray-800">{{ cocktail.strGlass }}</p>
+      <h2 class="text-xl text-center  md:text-left lg:text-2xl font-semibold mb-2">Préparation</h2>
+      <!-- <p class="text-gray-800 leading-relaxed">{{ cocktail.strInstructionsFR || cocktail.strInstructions }}</p> -->
+       <div>
+        <ul>
+          <li *ngFor="let instruction of (cocktail.strInstructionsFR || cocktail.strInstructions)!.split('.').slice(0, -1)" 
+              class="text-gray-800 leading-relaxed mb-2">
+            🍸 {{ instruction }}
+          </li>
+        </ul>
+       </div>
 
-    <button 
-      (click)="handleNavigateBack()"
-      class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition w-fit mx-auto shadow-md"
-    >
-      Retour
-    </button>
+    </div>
+    <div>
+
+      <h2 class="text-xl text-center md:text-left lg:text-2xl font-semibold mb-2">Verre</h2>
+      <p class="text-gray-800">{{ cocktail.strGlass }}</p>
+
+    </div>
+ 
+
+ 
+
+   
   </div>
+  <!-- Bouton de retour -->
+  <button 
+  (click)="handleNavigateBack()"
+  class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition w-fit mx-auto shadow-md"
+>
+  Retour
+</button>
 </div>

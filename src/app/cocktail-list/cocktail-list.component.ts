@@ -23,6 +23,7 @@ private destroy$ = new Subject<boolean>();
   constructor(private cocktailService: CocktailService) {}
 
   ngOnInit(): void {
+    this.cocktails = [];
     this.loadCocktails();
   }
 
