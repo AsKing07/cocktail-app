@@ -4,13 +4,16 @@ import { Cocktail } from '../models/cocktail.model';
 import { CocktailService } from '../services/cocktail.service';
 import { CocktailComponent } from '../cocktail/cocktail.component';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import {faFaceSadTear} from '@ng-icons/font-awesome/regular';
 
 @Component({
   selector: 'app-cocktail-list',
-  imports: [CommonModule, CocktailComponent],
+  imports: [CommonModule, CocktailComponent, NgIcon],
   templateUrl: './cocktail-list.component.html',
   styleUrl: './cocktail-list.component.scss',
   standalone: true,
+  viewProviders: [provideIcons({ faFaceSadTear })],
 })
 export class CocktailListComponent implements OnInit, OnDestroy {
   cocktails: Cocktail[] = [];
@@ -38,6 +41,7 @@ private destroy$ = new Subject<boolean>();
         setTimeout(() => {
           this.state.loading = false;
         }, 1000);
+        
       },
       error: (error) => {
         this.state.error = `Erreur lors de la récupération des cocktails : ${error.message}`;

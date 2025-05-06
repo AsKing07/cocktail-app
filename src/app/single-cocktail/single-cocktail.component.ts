@@ -4,14 +4,17 @@ import { Cocktail } from '../models/cocktail.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CocktailService } from '../services/cocktail.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import {faFaceSadTear} from '@ng-icons/font-awesome/regular';
 @Component({
   selector: 'app-single-cocktail',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIcon],
   templateUrl: './single-cocktail.component.html',
   styleUrl: './single-cocktail.component.scss',
-  standalone: true
+  standalone: true,
+  viewProviders: [provideIcons({ faFaceSadTear })],
 })
 export class SingleCocktailComponent implements OnInit, OnDestroy {
 
@@ -49,15 +52,19 @@ safeVideoUrl: SafeResourceUrl | null = null;
       const id = this.route.snapshot.paramMap.get('id');
       if(id)
         {
-          this.cocktailService.getCocktailById(id).subscribe((cocktail: Cocktail) => {
-            this.cocktail = cocktail;
-          this.getIngredients(cocktail);
-          this.tags = this.getTags(cocktail);
-          this.prepareMediaItems(cocktail);
-
-            this.loading = false;
-          });
-          
+            this.cocktailService.getCocktailById(id).subscribe({
+            next: (cocktail: Cocktail) => {
+              this.cocktail = cocktail;
+              this.getIngredients(cocktail);
+              this.tags = this.getTags(cocktail);
+              this.prepareMediaItems(cocktail);
+              this.loading = false;
+            },
+            error: (err) => {
+              console.error('Error fetching cocktail:', err);
+              this.loading = false;
+            }
+            });
         }
 
      

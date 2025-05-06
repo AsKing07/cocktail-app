@@ -1,16 +1,16 @@
-<div class="h-screen flex flex-col overflow-y-auto">
-        <!-- Header fixe -->
-        <div class="header w-full top-0 ">
-            <app-header></app-header>
-        </div>
-    
-        <!-- Contenu principal -->
-        <div class="app flex-grow ">
-            <router-outlet></router-outlet>
-        </div>
-    
-        <!-- Footer -->
-        <div class="footer">
-            <app-footer></app-footer>
-        </div>
+<div class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <div class="header w-full top-0">
+        <app-header></app-header>
     </div>
+
+    <!-- Contenu principal -->
+    <div class="app flex-grow  justify-center items-center flex w-screen mx-0">
+        <router-outlet ></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <app-footer></app-footer>
+    </div>
+</div>
