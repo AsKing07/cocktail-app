@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Cocktail } from '../models/cocktail.model';
 import { CocktailService } from '../services/cocktail.service';
 import { CocktailComponent } from '../cocktail/cocktail.component';
-import {  Subject, takeUntil } from 'rxjs';
+import {  BehaviorSubject, combineLatest, finalize, map, Subject, takeUntil } from 'rxjs';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {faFaceSadTear} from '@ng-icons/font-awesome/regular';
 
@@ -14,49 +14,63 @@ import {faFaceSadTear} from '@ng-icons/font-awesome/regular';
   styleUrl: './cocktail-list.component.scss',
   standalone: true,
   viewProviders: [provideIcons({ faFaceSadTear })],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CocktailListComponent implements OnInit, OnDestroy {
   cocktails: Cocktail[] = [];
-  initialized = false;
-  state = {
-    loading: true,
-    error: '',
-  };
+
+  private loadingSubject = new BehaviorSubject<boolean>(true);
+  private errorSubject = new BehaviorSubject<string>('');
+
+  loading$ = this.loadingSubject.asObservable();
+  error$ = this.errorSubject.asObservable();
 private destroy$ = new Subject<boolean>();
 
-  constructor(private cocktailService: CocktailService) {
-    this.state.loading = true;
-    this.state.error = '';
-    
-    this.cocktails = [];
+viewState$ = combineLatest([
+  this.loading$,
+  this.error$
+]).pipe(
+  map(([loading, error]) => ({ loading, error }))
+);
+
+  constructor(private cocktailService: CocktailService, private cdr: ChangeDetectorRef) {
+
   }
 
   ngOnInit(): void {
-    this.state.loading = true;
     this.cocktails = [];
     this.loadCocktails();
-    this.initialized = true; 
+
   }
 
   loadCocktails(): void {
-    this.state.loading = true;
-    this.state.error = '';
+    this.loadingSubject.next(true);
+    this.errorSubject.next('');
+    this.cocktails = []; 
+    
     this.cocktailService.getRandomCocktails().pipe(
       takeUntil(this.destroy$)
     ).subscribe({
       next: (data) => {
-        this.state.loading = false;
-        this.cocktails = data;
-      
-
+  
+        const tempCocktails = data;
+        
+    
+        setTimeout(() => {
+          this.loadingSubject.next(false);
+          this.cocktails = tempCocktails;
+         
+        }, 500); 
       },
       error: (error) => {
-        this.state.error = `Erreur lors de la récupération des cocktails : ${error.message}`;
-        this.state.loading = false;
-  
-      },
+        setTimeout(() => {
+          this.errorSubject.next(`Erreur lors de la récupération des cocktails : ${error.message}`);
+          this.loadingSubject.next(false);
+        }, 500);
+      }
     });
   }
+  
   onRefresh(): void {
     this.loadCocktails();
   }
