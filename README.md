@@ -1,59 +1,147 @@
-# CocktailApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+# 🥂 CocktailApp
 
-## Development server
+**CocktailApp** est une application web simple et intuitive permettant de découvrir des cocktails de manière aléatoire. Conçue avec Angular et Tailwind CSS, elle offre une expérience fluide et responsive.
 
-To start a local development server, run:
+> Générée avec [Angular CLI](https://github.com/angular/angular-cli) — version 19.2.9.
+
+---
+
+## 📖 Présentation
+
+Vous manquez d'inspiration pour votre prochaine boisson ? CocktailApp vous propose des cocktails aléatoires accompagnés de leurs recettes détaillées. Chaque session est une nouvelle découverte ! L’application gère automatiquement le chargement et les erreurs, assurant une navigation agréable.
+
+---
+
+## ✨ Fonctionnalités
+
+* 🔀 **Cocktails aléatoires** : Affichage dynamique à chaque chargement.
+* 🔁 **Bouton "Rafraîchir"** : Obtenez une nouvelle liste de cocktails en un clic.
+* 📋 **Recettes détaillées** : Ingrédients et étapes de préparation inclus.
+* 📱 **Interface responsive** : Adaptée aux écrans mobiles, tablettes et ordinateurs.
+
+---
+
+## ⚙️ Technologies utilisées
+
+* **Angular**
+* **Tailwind CSS**
+* **ng-icons**
+* **API** : [TheCocktailDB](https://www.thecocktaildb.com/)
+
+---
+
+## 🐳 Image Docker
+
+L’image Docker du projet est disponible sur Docker Hub :
+
+> 🔗 [Cocktail-App sur Docker Hub](https://hub.docker.com/r/asking07/cocktail-app)
+
+### Commandes
+
+```bash
+# Télécharger l’image
+docker pull asking07/cocktail-app:latest
+
+# Construire l’image en local
+docker build -t cocktail-app .
+
+# Lancer le conteneur
+docker run -p 4000:4000 cocktail-app
+```
+
+🔗 L’application sera accessible à l’adresse : `http://localhost:4000/`
+
+---
+
+## 🚀 Installation locale
+
+### 1. Cloner le dépôt
+
+```bash
+git clone <https://github.com/AsKing07/cocktail-app>
+cd cocktail-app
+```
+
+### 2. Installer les dépendances
+
+```bash
+# Avec npm
+npm install
+
+# ou avec yarn
+yarn install
+```
+
+### 3. Lancer le serveur de développement
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+🔗 L’application sera accessible à l’adresse : `http://localhost:4200/`
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## ✅ Tests
 
-```bash
-ng generate component component-name
-```
+### ✔️ Tests unitaires
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Exécutez les tests unitaires avec [Karma](https://karma-runner.github.io) :
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+### 🧪 Tests end-to-end
 
-For end-to-end (e2e) testing, run:
+Lancement des tests e2e (à configurer selon le framework choisi) :
 
 ```bash
 ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+*⚠️ Angular CLI ne fournit plus de framework e2e par défaut. Vous pouvez intégrer [Cypress](https://www.cypress.io/), [Playwright](https://playwright.dev/) ou un autre outil selon vos préférences.*
 
-## Additional Resources
+---
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🧭 Utilisation
+
+1. Lancez l’application.
+2. Rendez-vous sur `http://localhost:4200/`.
+3. Explorez la sélection de cocktails générés aléatoirement.
+4. Utilisez le bouton **"Rafraîchir"** pour découvrir d'autres cocktails.
+5. En cas d’erreur, un message vous invitera à réessayer.
+
+---
+
+## 🤝 Contribuer
+
+Les contributions sont les bienvenues !
+
+### Étapes :
+
+1. Forkez le dépôt.
+2. Créez une branche :
+
+   ```bash
+   git checkout -b feature/nom-fonctionnalite
+   ```
+3. Apportez vos modifications et commitez :
+
+   ```bash
+   git commit -m "Ajout de la fonctionnalité X"
+   ```
+4. Poussez la branche :
+
+   ```bash
+   git push origin feature/nom-fonctionnalite
+   ```
+5. Ouvrez une **Pull Request**.
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence **MIT**. Voir le fichier `LICENSE` pour plus d’informations.
+
