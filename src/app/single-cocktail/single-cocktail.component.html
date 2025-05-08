@@ -1,3 +1,5 @@
+<div class="w-full max-w-screen-2xl mx-auto flex flex-col ">
+  
 <!-- État de chargement -->
 <div *ngIf="loading" class="flex flex-col items-center justify-center w-full h-full">
   <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-indigo-600"></div>
@@ -16,8 +18,8 @@
 </div>
 
 <!-- Contenu principal -->
-<div *ngIf="cocktail && !loading" class="w-full  justify-center mb-2 px-6  py-6 flex flex-col">
-    <!-- Bouton de retour
+<div *ngIf="cocktail && !loading" class="w-full h-full mb-2 px-6 py-6 flex flex-col justify-center">
+      <!-- Bouton de retour
     <button 
     (click)="handleNavigateBack()"
     class="mt-6 inline-block bg-indigo-600 text-white px-6 py-3 rounded hover:bg-indigo-700 transition w-fit mx-auto shadow-md"
@@ -90,7 +92,7 @@
   </div>
 
   <!-- Section inférieure : Instructions et verre -->
-  <div class="w-full flex flex-col md:flex-row items-center md:items-stretch justify-between mx-auto px-6 lg:px-16 py-6 gap-6">
+  <div class="w-full flex flex-col items-center md:items-stretch justify-between mx-auto px-6 lg:px-16 py-6 gap-6">
     <div>
       <h2 class="text-xl text-center md:text-left lg:text-2xl font-semibold mb-2">Préparation</h2>
       <ul>
@@ -108,3 +110,7 @@
 
 
 </div>
+
+
+</div>
+

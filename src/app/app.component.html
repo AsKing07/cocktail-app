@@ -1,16 +1,20 @@
-<div class="min-h-screen flex flex-col">
+<div class="min-h-screen flex flex-col overflow-x-hidden">
     <!-- Header -->
     <div class="header w-full top-0">
         <app-header></app-header>
     </div>
 
     <!-- Contenu principal -->
-    <div class="app flex-grow  justify-center items-center flex w-screen mx-0">
-        <router-outlet ></router-outlet>
+
+    <div class="app flex-grow flex flex-col justify-center  w-screen min-h-full  px-4">
+        <router-outlet></router-outlet>
     </div>
+    
+      
 
     <!-- Footer -->
     <div class="footer">
         <app-footer></app-footer>
     </div>
 </div>
+
