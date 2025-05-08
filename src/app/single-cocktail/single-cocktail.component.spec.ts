@@ -49,7 +49,6 @@ describe('SingleCocktailComponent', () => {
       strVideo: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
       strIngredient1: 'Rum',
       strMeasure1: '50ml',
-      // autres propriétés à null ou undefined
     } as any;
 
     mockCocktailService.getCocktailById.and.returnValue(of(mockCocktail));
